@@ -6,8 +6,8 @@ This document serves as the central hub for the API documentation covering the l
 	- Register Endpoint
 	- Login Endpoint
 	- Key Generation Endpoint
-	- User Information
-	- Claim Key
+	- User Information Endpoint
+	- Claim Key Endpoint
 
 # Register Endpoint
 
