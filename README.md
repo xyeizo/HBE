@@ -7,6 +7,7 @@ This document serves as the central hub for the API documentation covering the l
 	- Login Endpoint
 	- Key Generation Endpoint
 	- User Information
+	- Claim Key
 
 # Register Endpoint
 
@@ -79,7 +80,7 @@ Request Format
 Responses
 - Title: Success
 
- ```json
+```json
   {
     "status": "success",
     "message": "Login successful."
@@ -87,6 +88,7 @@ Responses
 ```
 
 - Title: Error
+
 ```json
   {
     "status": "error",
@@ -133,6 +135,101 @@ Responses
     "status": "error",
     "message": "Key generation failed."
   }
+```
+
+
+# User Information Endpoint
+
+- Endpoint Information
+	**URL:** /user-information
+	**Method:** POST
+
+
+## Description
+Retrieves data about a user's authentication key and profile information based on their user ID.
+
+Request Format
+```json
+{
+  "type": "userInformation",
+  "userId": "integer"
+}
+````
+Title: success
+```json
+{
+  "status": "success",
+  "data": {
+    "authKey": {
+      "key": "string",
+      "expiration": "datetime"
+    },
+    "profile": {
+      "username": "string",
+      "email": "string",
+      "displayName": "string",
+      "description": "string"
+    }
+  }
+}
+```
+Title: error
+```json
+{
+  "status": "error",
+  "message": "User not found."
+}
+```
+
+# Claim Key Endpoint
+
+- Endpoint Information
+	**URL:** /claim-key
+	**Method:** POST
+
+## Description
+Claims an Auth key to allow the user access to a product for a certain period of time
+
+Request Format
+```json
+{
+  "type": "claimKey",
+  "userId": "integer",
+  "key" : "string"
+}
+````
+Title: success
+```json
+{
+  "status": "success",
+  "data": {
+    "authKey": {
+      "key": "string",
+      "expiration": "datetime"
+    },
+    "profile": {
+      "username": "string",
+      "email": "string",
+      "displayName": "string",
+      "description": "string"
+    }
+  }
+}
+```
+Title: error
+```json
+{
+  "status": "error",
+  "message": "Key not found."
+}
+{
+  "status": "error",
+  "message": "User not found."
+}
+{
+  "status": "error",
+  "message": "Key is already claimed."
+}
 ```
 
 # Security Considerations
